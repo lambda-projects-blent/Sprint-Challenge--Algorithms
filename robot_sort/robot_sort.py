@@ -98,8 +98,32 @@ class SortingRobot:
         """
         while self.light_is_on() is False:  # The light starts off as default. Simple while check to make sure this is correct.
             print('current light status', self.light_is_on())
-            self.set_light_on()
+            self.set_light_on() #Changes the light to on
             print('Robot turning on...', self.light_is_on())
+            
+            #I would want to check if the robot can move right
+            while self.can_move_right():
+                self.swap_item()
+                self.move_right();
+                print(f"Robot moved right! Is the light on? {self.light_is_on()}")
+                if self.compare_item() == 1:
+                    self.swap_item()  #Moves the current item forward by one.
+                    self.move_left()  #Moves back by one
+                    self.swap_item()  #Moves current item forward by one
+                    self.move_right() #Moves right by one
+                    
+                    self.set_light_off() # Turn off light -> program is finish iterating
+                    
+                if self.compare_item() == -1:
+                    #If the value is less than, swap the previous value with current
+                    print(f"The item is is currently less than the item in front of it")
+                if self.compare_item() == 0:
+                    #If robot number is the same, I would just want to move forward.
+                    self.move_right()
+                    print(f"The item is currently equal to the item in front of it.")
+                if self.compare_item() == None:
+                    #If value is none, Do nothing lol?
+                    print(f"Value is nothing")
 
 
 if __name__ == "__main__":
