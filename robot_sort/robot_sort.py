@@ -117,17 +117,12 @@ class SortingRobot:
                     self.move_right()  # Moves right by one
                     self.set_light_off()  # Turn off light -> program is finish iterating
                 if self.compare_item() == -1 or 0:  # if robot number less than, do this
-                    print(f"if < holding: ", self._item)
                     self.move_left()
                     self.swap_item()
-                    print(f"if < swap: ", self._item)
                     self.move_right()
-
                 if self.compare_item() == 0:  # if robot number the same, do this
-                    print(f"if same holding: ", self._item)
                     self.move_left()
                     self.swap_item()
-                    print(f"if same swap: ", self._item)
                     self.move_right()
             # Returns back to the beginning of the array to continuo sorting.
             if self.light_is_on() is False:
