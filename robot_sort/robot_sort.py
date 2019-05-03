@@ -107,6 +107,7 @@ class SortingRobot:
                 self.move_right();
                 print(f"Robot moved right! Is the light on? {self.light_is_on()}")
                 if self.compare_item() == 1:
+                    #If the value is greater, I want to swap the current item with the item infront of it.
                     self.swap_item()  #Moves the current item forward by one.
                     self.move_left()  #Moves back by one
                     self.swap_item()  #Moves current item forward by one
