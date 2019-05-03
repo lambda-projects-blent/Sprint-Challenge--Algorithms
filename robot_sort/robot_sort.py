@@ -81,11 +81,13 @@ class SortingRobot:
         Turn on the robot's light
         """
         self._light = "ON"
+
     def set_light_off(self):
         """
         Turn off the robot's light
         """
         self._light = "OFF"
+
     def light_is_on(self):
         """
         Returns True if the robot's light is on and False otherwise.
@@ -98,47 +100,50 @@ class SortingRobot:
         """
         while self.light_is_on() is False:  # The light starts off as default. Simple while check to make sure this is correct.
             print('current light status', self.light_is_on())
-            self.set_light_on() #Changes the light to on
+            self.set_light_on()  # Changes the light to on
             print('Robot turning on...', self.light_is_on())
-            
-            #I would want to check if the robot can move right
+
+            # I would want to check if the robot can move right
             while self.can_move_right():
                 self.swap_item()
-                self.move_right();
-                print(f"Robot moved right! Is the light on? {self.light_is_on()}")
+                self.move_right()
+                print(
+                    f"Robot moved right! Is the light on? {self.light_is_on()}")
                 if self.compare_item() == 1:
-                    #If the value is greater, I want to swap the current item with the item infront of it.
-                    self.swap_item()  #Moves the current item forward by one.
-                    self.move_left()  #Moves back by one
-                    self.swap_item()  #Moves current item forward by one
-                    self.move_right() #Moves right by one
-                    self.set_light_off() # Turn off light -> program is finish iterating
+                    # If the value is greater, I want to swap the current item with the item infront of it.
+                    self.swap_item()  # Moves the current item forward by one.
+                    self.move_left()  # Moves back by one
+                    self.swap_item()  # Moves current item forward by one
+                    self.move_right()  # Moves right by one
+                    self.set_light_off()  # Turn off light -> program is finish iterating
                 if self.compare_item() == -1:
-                    #If the value is less than, swap the previous value with current
+                    # If the value is less than, swap the previous value with current
+                    if self.can_move_right() == False:
+                        print('end of list')
                     self.move_left()
-                    print(f"The item is is currently less than the item in front of it")
                 if self.compare_item() == 0:
-                    #If robot number is the same, I would just want to move forward.
+                    # If robot number is the same, I would just want to move forward.
                     self.move_right()
                     self.swap_item()
                     self.move_right()
                     print(f"The item is currently equal to the item in front of it.")
                 if self.compare_item() == None:
-                    #If value is none, Do nothing lol?
+                    # If value is none, Do nothing lol?
                     print(f"Value is nothing")
-            #Returns back to the beginning of the array to continuo sorting.
+            # Returns back to the beginning of the array to continuo sorting.
             if self.light_is_on() is False:
                 while self.can_move_left():
                     self.move_left()
+
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
     # with `python robot_sort.py`
 
-    l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1, 45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
+    l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1,
+         45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
 
     robot = SortingRobot(l)
 
     robot.sort()
     print(robot._list)
-
