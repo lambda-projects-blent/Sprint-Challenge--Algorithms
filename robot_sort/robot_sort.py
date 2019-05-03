@@ -96,8 +96,10 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
+        while self.light_is_on() is False:  # The light starts off as default. Simple while check to make sure this is correct.
+            print('current light status', self.light_is_on())
+            self.set_light_on()
+            print('Robot turning on...', self.light_is_on())
 
 
 if __name__ == "__main__":
@@ -110,3 +112,4 @@ if __name__ == "__main__":
 
     robot.sort()
     print(robot._list)
+
