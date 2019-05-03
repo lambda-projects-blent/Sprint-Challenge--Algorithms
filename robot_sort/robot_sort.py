@@ -112,20 +112,24 @@ class SortingRobot:
                     self.move_left()  #Moves back by one
                     self.swap_item()  #Moves current item forward by one
                     self.move_right() #Moves right by one
-                    
                     self.set_light_off() # Turn off light -> program is finish iterating
-                    
                 if self.compare_item() == -1:
                     #If the value is less than, swap the previous value with current
+                    self.move_left()
                     print(f"The item is is currently less than the item in front of it")
                 if self.compare_item() == 0:
                     #If robot number is the same, I would just want to move forward.
+                    self.move_right()
+                    self.swap_item()
                     self.move_right()
                     print(f"The item is currently equal to the item in front of it.")
                 if self.compare_item() == None:
                     #If value is none, Do nothing lol?
                     print(f"Value is nothing")
-
+            #Returns back to the beginning of the array to continuo sorting.
+            if self.light_is_on() is False:
+                while self.can_move_left():
+                    self.move_left()
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
